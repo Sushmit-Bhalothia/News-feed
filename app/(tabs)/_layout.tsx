@@ -20,8 +20,17 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={({ route }) => ({
-        tabBarActiveTintColor:
-          theme.mode === "dark" ? "black" : theme.colors.primary,
+        tabBarActiveTintColor: theme.colors.primary,
+        // tabBarBackground:
+        //   theme.mode === "dark" ? "black" : theme.colors.primary,
+
+        headerTintColor: theme.mode === "dark" ? "white" : "blue",
+        headerStyle: {
+          backgroundColor: theme.colors.background,
+        },
+        footerStyle: {
+          backgroundColor: theme.colors.background,
+        },
         tabBarIcon: ({ color }) => (
           <TabBarIcon name={getTabIconName(route.name)} color={color} />
         ),

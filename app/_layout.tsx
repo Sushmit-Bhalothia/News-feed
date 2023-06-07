@@ -60,6 +60,7 @@ function RootLayoutNav() {
     darkColors: {
       primary: "blue",
       secondary: "#f1e",
+      background: "#292727",
     },
 
     mode: "light",
