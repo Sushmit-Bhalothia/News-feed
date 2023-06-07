@@ -37,7 +37,7 @@ export default function TabLayout() {
       })}
     >
       <Tabs.Screen name="index" options={{ title: "News" }} />
-      <Tabs.Screen name="two" options={{ title: "Setting" }} />
+      <Tabs.Screen name="two" options={{ title: "Settings" }} />
     </Tabs>
   );
 }

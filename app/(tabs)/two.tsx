@@ -32,7 +32,7 @@ export default function TabTwoScreen() {
         }
       >
         <SettingOptions
-          title="Change Theme"
+          title={t("common:ChangeTheme")}
           icon="paint-brush"
           // onPress={}
           RightSideComponent={<SelectTheme />}

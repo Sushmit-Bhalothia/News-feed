@@ -12,7 +12,7 @@ const SelectLanguages = () => {
   const [value, setValue] = useState(language);
   return (
     <View style={styles.container}>
-      <Text style={styles.txt}> {t("common:languageSelector")} </Text>
+      {/* <Text style={styles.txt}> {t("common:languageSelector")} </Text> */}
       <DropDownPicker
         closeAfterSelecting
         closeOnBackPressed
