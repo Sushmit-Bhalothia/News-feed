@@ -4,10 +4,13 @@ import EditScreenInfo from "../../components/EditScreenInfo";
 import { Text, View } from "../../components/Themed";
 import SettingOptions from "../../components/SettingOptionInterface";
 import SelectTheme from "../../components/SelectTheme";
+import SelectLanguages from "../../components/SelectLangage";
 import { useTheme } from "@rneui/themed";
+import { useTranslation } from "react-i18next";
 
 export default function TabTwoScreen() {
   // const{theme}=useTheme()
+  const { t } = useTranslation();
   const { theme } = useTheme();
   return (
     <View
@@ -34,6 +37,12 @@ export default function TabTwoScreen() {
           // onPress={}
           RightSideComponent={<SelectTheme />}
         ></SettingOptions>
+        <SettingOptions
+          title={t("common:ChangeLang")}
+          icon="language"
+          //onPress={handleLanguageChange}
+          RightSideComponent={<SelectLanguages />}
+        />
       </View>
     </View>
   );
