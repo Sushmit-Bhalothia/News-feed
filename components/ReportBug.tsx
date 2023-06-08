@@ -12,10 +12,12 @@ import { FontAwesome } from "@expo/vector-icons";
 import * as MailComposer from "expo-mail-composer";
 import { useTheme } from "@rneui/themed";
 
+import { useTranslation } from "react-i18next";
 const ReportBug = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [feedback, setFeedback] = useState("");
   const { theme } = useTheme();
+  const { t } = useTranslation();
   const value = theme.mode;
 
   const handleReportBug = () => {
@@ -68,7 +70,7 @@ const ReportBug = () => {
       <Modal visible={modalVisible} animationType="slide">
         <View style={{ flex: 1, justifyContent: "center", padding: 20 }}>
           <TextInput
-            placeholder="Explain the issue"
+            placeholder={t("common:ExplainIssue")}
             value={feedback}
             onChangeText={(text) => setFeedback(text)}
             style={{
@@ -88,7 +90,7 @@ const ReportBug = () => {
               borderRadius: 5,
             }}
           >
-            <Text style={{ color: "white" }}>Report a bug</Text>
+            <Text style={{ color: "white" }}>{t("common:Report")}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => setModalVisible(false)}
@@ -100,7 +102,7 @@ const ReportBug = () => {
               marginTop: 10,
             }}
           >
-            <Text style={{ color: "white" }}>Cancel</Text>
+            <Text style={{ color: "white" }}>{t("common:cancel")}</Text>
           </TouchableOpacity>
         </View>
       </Modal>

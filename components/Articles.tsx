@@ -9,7 +9,10 @@ import {
 } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
-import DetailedArticle from "./DetailedArticle";
+// import DetailedArticle from "./DetailedArticle";
+import { LinearGradient } from "expo-linear-gradient";
+import { useTheme } from "@rneui/themed";
+import { useTranslation } from "react-i18next";
 
 interface Article {
   title: string;
@@ -28,6 +31,8 @@ const Articles = () => {
   const [data, setData] = useState<Article[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredData, setFilteredData] = useState<Article[]>([]);
+  const { theme } = useTheme();
+  const { t } = useTranslation();
 
   useEffect(() => {
     fetch(url)
@@ -54,18 +59,26 @@ const Articles = () => {
 
   const renderItem = ({ item }: { item: Article }) => (
     <TouchableOpacity onPress={() => handleArticlePress(item)}>
-      <View style={styles.article}>
+      <View style={theme.mode == "light" ? styles.article : styles.darkArticle}>
         <View style={styles.items}>
           <Image
-            style={{ height: 200, width: 140 }}
+            style={{ height: 230, width: 140 }}
             source={
               item.urlToImage ? { uri: item.urlToImage } : defaultImageUrl
             }
           />
         </View>
-        <View style={styles.items}>
-          <Text style={styles.title}>{item.title}</Text>
-          <Text>{item.description}</Text>
+        <View style={theme.mode == "light" ? styles.items1 : styles.darkItems1}>
+          <Text style={theme.mode == "light" ? styles.title : styles.darkTitle}>
+            {item.title}
+          </Text>
+          <Text
+            style={
+              theme.mode == "light" ? { color: "black" } : { color: "white" }
+            }
+          >
+            {item.description}
+          </Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -75,23 +88,34 @@ const Articles = () => {
     <>
       <View style={{ marginVertical: 10 }}>
         <Searchbar
-          placeholder="Search"
+          placeholder={t("common:Search")}
           onChangeText={onChangeSearch}
           value={searchQuery}
         />
       </View>
-
-      <View style={styles.container}>
-        {isLoading ? (
-          <Text>Loading...</Text>
-        ) : (
-          <FlatList
-            data={filteredData}
-            keyExtractor={(_, index) => String(index)}
-            renderItem={renderItem}
-          />
-        )}
-      </View>
+      <LinearGradient
+        colors={[theme.mode == "light" ? "#b4b0d9" : "#222224", "#e1e1e3"]}
+        style={[
+          styles.container,
+          theme.mode === "light" ? styles.lightContainer : styles.darkContainer,
+        ]}
+      >
+        <View
+          style={
+            theme.mode == "light" ? styles.container : styles.darkContainer
+          }
+        >
+          {isLoading ? (
+            <Text>Loading...</Text>
+          ) : (
+            <FlatList
+              data={filteredData}
+              keyExtractor={(_, index) => String(index)}
+              renderItem={renderItem}
+            />
+          )}
+        </View>
+      </LinearGradient>
     </>
   );
 };
@@ -100,8 +124,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
+    // backgroundColor: "#dfe0f5",
+  },
+  lightContainer: {
     backgroundColor: "#dfe0f5",
   },
+  darkContainer: {
+    backgroundColor: "#858176",
+  },
+
   articleContainer: {
     padding: 10,
     marginTop: 20,
@@ -112,21 +143,64 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     marginBottom: 5,
+    color: "black",
+    flexShrink: 1,
+  },
+  darkTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 5,
+    color: "white",
+    flexShrink: 1,
   },
   article: {
     backgroundColor: "#f7fcfc",
     flex: 1,
-    height: 200,
+    height: 230,
     flexDirection: "row",
     marginBottom: 10,
     borderRadius: 10,
     marginHorizontal: 5,
+  },
+  darkArticle: {
+    backgroundColor: "black",
+    flex: 1,
+    height: 230,
+    flexDirection: "row",
+    marginBottom: 10,
+    borderRadius: 10,
+    marginHorizontal: 5,
+    // color: "white",
   },
   items: {
     margin: 5,
     justifyContent: "center",
     alignContent: "flex-start",
     paddingRight: 10,
+    color: "black",
+    // flex: 1,
+    //width: 250,
+  },
+  items1: {
+    margin: 5,
+    justifyContent: "center",
+    alignContent: "flex-start",
+    paddingRight: 60,
+    color: "black",
+    // flex: 1,
+    width: 300,
+
+    // width: 250,
+  },
+  darkItems1: {
+    margin: 5,
+    justifyContent: "center",
+    alignContent: "flex-start",
+    paddingRight: 60,
+    color: "white",
+    width: 300,
+
+    //
   },
 });
 

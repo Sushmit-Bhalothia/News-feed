@@ -15,6 +15,7 @@ export default function TabOneScreen() {
       </Text>
       <Text style={styles.Subtitle}>{t("common:Discreption")}</Text>
       {/* <SearchBar></SearchBar> */}
+
       <Articles></Articles>
       {/* <View
         style={styles.separator}

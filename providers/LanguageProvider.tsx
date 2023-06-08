@@ -12,7 +12,7 @@ const LanguageContext = React.createContext<LANG>({
 
 // This hook can be used to access the user info.
 export function useLanguage() {
-  console.log(getLanguage());
+  // console.log(getLanguage());
 
   return React.useContext(LanguageContext);
 }

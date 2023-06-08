@@ -11,6 +11,12 @@ export default {
   // Area:"इलाका",
   settings: "सेटिंग",
   News: "समाचार",
+  Search: "खोजें",
+  feedback: "प्रतिक्रिया",
+  cancel: "रद्द करना",
+  sendfeedback: "प्रतिक्रिया भेजें",
+  ExplainIssue: "मसला समझाओ",
+
   // MyProducts:"मेरे उत्पाद",
   // MyCustomer:"मेरे ग्राहक",
   // changepassword:"पासवर्ड बदलें",

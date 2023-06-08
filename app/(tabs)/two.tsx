@@ -17,7 +17,7 @@ export default function TabTwoScreen() {
 
   return (
     <LinearGradient
-      colors={[theme.mode == "light" ? "#b4b0d9" : "#62616b", "#e1e1e3"]}
+      colors={[theme.mode == "light" ? "#b4b0d9" : "#222224", "#e1e1e3"]}
       style={[
         styles.container,
         theme.mode === "light" ? styles.lightContainer : styles.darkContainer,

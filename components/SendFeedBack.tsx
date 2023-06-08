@@ -12,17 +12,20 @@ import { FontAwesome } from "@expo/vector-icons";
 import * as MailComposer from "expo-mail-composer";
 import { useTheme } from "@rneui/themed";
 
+import { useTranslation } from "react-i18next";
+
 const SendFeedback = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [feedback, setFeedback] = useState("");
   const { theme } = useTheme();
+  const { t } = useTranslation();
   const value = theme.mode;
 
   const handleSendFeedback = () => {
     if (feedback) {
       const emailSubject = "Feedback";
       const emailBody = `Feedback: ${feedback}`;
-      const emailRecipient = "sushmitbhalothiagmail.com";
+      const emailRecipient = "sushmitbhalothi@gmai.com";
 
       MailComposer.composeAsync({
         recipients: [emailRecipient],
@@ -68,7 +71,7 @@ const SendFeedback = () => {
       <Modal visible={modalVisible} animationType="slide">
         <View style={{ flex: 1, justifyContent: "center", padding: 20 }}>
           <TextInput
-            placeholder="Enter your feedback"
+            placeholder={t("common:feedback")}
             value={feedback}
             onChangeText={(text) => setFeedback(text)}
             style={{
@@ -88,7 +91,7 @@ const SendFeedback = () => {
               borderRadius: 5,
             }}
           >
-            <Text style={{ color: "white" }}>Send Feedback</Text>
+            <Text style={{ color: "white" }}>{t("common:sendfeedback")}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => setModalVisible(false)}
@@ -100,7 +103,7 @@ const SendFeedback = () => {
               marginTop: 10,
             }}
           >
-            <Text style={{ color: "white" }}>Cancel</Text>
+            <Text style={{ color: "white" }}>{t("common:cancel")}</Text>
           </TouchableOpacity>
         </View>
       </Modal>
