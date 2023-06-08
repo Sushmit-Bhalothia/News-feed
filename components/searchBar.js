@@ -1,7 +1,8 @@
 import * as React from "react";
 import { Searchbar } from "react-native-paper";
+import { View } from "./Themed";
 
-const MyComponent = () => {
+const searchBar = () => {
   const [searchQuery, setSearchQuery] = React.useState("");
 
   const onChangeSearch = (query) => setSearchQuery(query);
@@ -15,4 +16,4 @@ const MyComponent = () => {
   );
 };
 
-export default MyComponent;
+export default searchBar;

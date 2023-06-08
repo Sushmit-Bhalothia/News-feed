@@ -5,7 +5,7 @@ import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import { useColorScheme } from "react-native";
 import { Provider as LanguageProvider } from "../providers/LanguageProvider";
-
+import { Drawer } from "../drawer";
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
@@ -72,10 +72,12 @@ function RootLayoutNav() {
     <>
       <ThemeProvider theme={theme}>
         <LanguageProvider>
+          {/* <Drawer> */}
           <Stack>
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="modal" options={{ presentation: "modal" }} />
+            {/* <Stack.Screen name="modal" options={{ presentation: "modal" }} /> */}
           </Stack>
+          {/* </Drawer> */}
         </LanguageProvider>
       </ThemeProvider>
     </>
