@@ -4,6 +4,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import { View, TouchableOpacity, Text } from "react-native";
 import { StyleSheet } from "react-native";
 import { useTheme } from "@rneui/themed";
+import { color } from "@rneui/themed/dist/config";
 interface SettingOptionProps {
   title: string;
   icon: string;
@@ -21,7 +22,9 @@ const SettingOptions: React.FC<SettingOptionProps> = ({
   const iconColor = theme.mode == "light" ? "black" : "white";
   return (
     <TouchableOpacity
-      style={styles.optionButton}
+      style={
+        theme.mode == "light" ? styles.optionButton : styles.darkOptionButton
+      }
       // onPress={onPress}
       activeOpacity={0.7}
     >
@@ -45,15 +48,33 @@ export default SettingOptions;
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    width: "60%",
+    width: "70%",
     justifyContent: "space-between",
   },
   optionButton: {
     flexDirection: "row",
     alignItems: "center",
-    marginVertical: 20,
+    justifyContent: "space-between",
+    width: 400,
+    marginVertical: 5,
+    backgroundColor: "#fff",
+    height: 50,
+    borderRadius: 10,
+    paddingHorizontal: 15,
+    // paddingVertical: 5,
 
     // Add hover effect styles
+  },
+  darkOptionButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: 400,
+    marginVertical: 5,
+    backgroundColor: "black",
+    height: 50,
+    borderRadius: 10,
+    paddingHorizontal: 15,
   },
   optionButtonText: {
     marginLeft: 20,

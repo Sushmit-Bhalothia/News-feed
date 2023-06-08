@@ -1,8 +1,8 @@
 export default {
   // Hey: "नमस्ते",
   // ContactUs:'हमसे संपर्क करें',
-  // SendFeed:"फ़ीडबैक भेजें",
-  // Report:"बग की रिपोर्ट करें",
+  SendFeed: "फ़ीडबैक भेजें",
+  Report: "बग की रिपोर्ट करें",
   ChangeLang: "भाषा बदलें",
   ChangeTheme: "थीम रंग बदलें ",
   Discover: "खोज करो",

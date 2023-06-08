@@ -1,50 +1,57 @@
-import { StyleSheet, ImageBackground, Image } from "react-native";
-
-import EditScreenInfo from "../../components/EditScreenInfo";
-import { Text, View } from "../../components/Themed";
+import React from "react";
+import { StyleSheet, View, Image } from "react-native";
+import { useTheme } from "@rneui/themed";
+import { LinearGradient } from "expo-linear-gradient";
 import SettingOptions from "../../components/SettingOptionInterface";
 import SelectTheme from "../../components/SelectTheme";
 import SelectLanguages from "../../components/SelectLangage";
-import { useTheme } from "@rneui/themed";
+import SendFeedback from "../../components/SendFeedBack";
+import ReportBug from "../../components/ReportBug";
 import { useTranslation } from "react-i18next";
+import { FontAwesome } from "@expo/vector-icons";
 
 export default function TabTwoScreen() {
-  // const{theme}=useTheme()
   const { t } = useTranslation();
   const { theme } = useTheme();
+  const iconColor = theme.mode == "light" ? "black" : "white";
+
   return (
-    <View
-      style={theme.mode == "light" ? styles.container : styles.darkConatiner}
+    <LinearGradient
+      colors={[theme.mode == "light" ? "#b4b0d9" : "#62616b", "#e1e1e3"]}
+      style={[
+        styles.container,
+        theme.mode === "light" ? styles.lightContainer : styles.darkContainer,
+      ]}
     >
-      {/* <Text style={styles.title}>Tab Two</Text> */}
-      {/* <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/two.tsx" /> */}
-      <Image
+      {/* <Image
         source={require("../../assets/images/setting.jpeg")}
         style={styles.image}
-      ></Image>
-
-      <View
-        style={
-          theme.mode == "light"
-            ? styles.SettingOptionsContainer
-            : styles.darkSettingOptionContainer
-        }
-      >
-        <SettingOptions
-          title={t("common:ChangeTheme")}
-          icon="paint-brush"
-          // onPress={}
-          RightSideComponent={<SelectTheme />}
-        ></SettingOptions>
-        <SettingOptions
-          title={t("common:ChangeLang")}
-          icon="language"
-          //onPress={handleLanguageChange}
-          RightSideComponent={<SelectLanguages />}
-        />
+      /> */}
+      <View style={{ marginVertical: 20 }}>
+        <FontAwesome name="gear" size={280} color={iconColor} />
       </View>
-    </View>
+
+      <SettingOptions
+        title={t("common:ChangeTheme")}
+        icon="paint-brush"
+        RightSideComponent={<SelectTheme />}
+      />
+      <SettingOptions
+        title={t("common:Report")}
+        icon="bug"
+        RightSideComponent={<ReportBug />}
+      />
+      <SettingOptions
+        title={t("common:SendFeed")}
+        icon="comments"
+        RightSideComponent={<SendFeedback />}
+      />
+      <SettingOptions
+        title={t("common:ChangeLang")}
+        icon="language"
+        RightSideComponent={<SelectLanguages />}
+      />
+    </LinearGradient>
   );
 }
 
@@ -53,52 +60,23 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     // justifyContent: "center",
+    // marginTop: "10%",
+  },
+  lightContainer: {
     backgroundColor: "#dfe0f5",
   },
-  darkConatiner: {
-    flex: 1,
-    alignItems: "center",
-    // justifyContent: "center",
+  darkContainer: {
     backgroundColor: "#858176",
   },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
+  image: {
+    width: 200,
+    height: 200,
+    marginBottom: 20,
   },
   separator: {
-    marginVertical: 30,
-    height: 1,
     width: "80%",
-  },
-  image: {
-    height: 360,
-  },
-  SettingOptionsContainer: {
-    marginTop: -70,
-    borderRadius: 10,
-    marginLeft: 20,
-    marginRight: 20,
-    zIndex: 4,
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
-    // marginLeft: 30,
-    padding: 20,
-    backgroundColor: "#fff",
-  },
-  darkSettingOptionContainer: {
-    marginTop: -70,
-    borderRadius: 10,
-    marginLeft: 20,
-    marginRight: 20,
-    zIndex: 4,
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
-    // marginLeft: 30,
-    padding: 20,
-    backgroundColor: "#292727",
+    height: 1,
+    backgroundColor: "black",
+    marginVertical: 10,
   },
 });

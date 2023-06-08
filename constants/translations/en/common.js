@@ -1,8 +1,8 @@
 export default {
   //   Hey: 'Hey',
   //   ContactUs:'Contact Us',
-  //   SendFeed:"Send Feedback",
-  //   Report:"Report a Bug",
+  SendFeed: "Send Feedback",
+  Report: "Report a Bug",
   ChangeLang: "Change Lang",
   //   ChangeTheme: 'Change Theme',
   //   Dues:"Dues",
