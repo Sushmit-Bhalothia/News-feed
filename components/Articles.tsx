@@ -6,10 +6,10 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
-// import DetailedArticle from "./DetailedArticle";
 import { LinearGradient } from "expo-linear-gradient";
 import { useTheme } from "@rneui/themed";
 import { useTranslation } from "react-i18next";
@@ -20,22 +20,39 @@ interface Article {
   urlToImage: string;
 }
 
-const url =
-  "https://newsapi.org/v2/everything?q=apple&from=2023-06-06&to=2023-06-06&sortBy=popularity&apiKey=ca195cc3d1124f06a4f77af6aaf5cd97";
-
 const defaultImageUrl = require("../assets/images/setting.jpeg");
 
 const Articles = () => {
+  const [category, setCategory] = useState("all");
+
   const navigation = useNavigation();
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState<Article[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredData, setFilteredData] = useState<Article[]>([]);
+  const [selected, setSelected] = useState("all"); // Selected filter option
   const { theme } = useTheme();
   const { t } = useTranslation();
-
+  const url =
+    "https://newsapi.org/v2/everything?q=" +
+    selected +
+    "&apiKey=ca195cc3d1124f06a4f77af6aaf5cd97";
   useEffect(() => {
-    fetch(url)
+    fetchArticles();
+  }, [selected]);
+
+  const fetchArticles = () => {
+    const category = selected === "all" ? "" : selected;
+    const fromDate = "2023-06-06";
+    const toDate = "2023-06-06";
+    const sortBy = "popularity";
+
+    const fetchUrl =
+      "https://newsapi.org/v2/everything?q=" +
+      selected +
+      "&apiKey=ca195cc3d1124f06a4f77af6aaf5cd97";
+
+    fetch(fetchUrl)
       .then((response) => response.json())
       .then((json) => {
         setData(json.articles);
@@ -43,8 +60,7 @@ const Articles = () => {
       })
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
-  }, []);
-
+  };
   const onChangeSearch = (query: string) => {
     setSearchQuery(query);
     const filteredArticles = data.filter((article) =>
@@ -84,6 +100,15 @@ const Articles = () => {
     </TouchableOpacity>
   );
 
+  // Array of filter options
+  const filterOptions = [
+    { label: "All", value: "all" },
+    { label: "Business", value: "business" },
+    { label: "Politics", value: "politics" },
+    { label: "Sports", value: "sports" },
+    { label: "Education", value: "education" },
+  ];
+
   return (
     <>
       <View style={{ marginVertical: 10 }}>
@@ -92,6 +117,29 @@ const Articles = () => {
           onChangeText={onChangeSearch}
           value={searchQuery}
         />
+      </View>
+      <View style={{ height: 60 }}>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          {filterOptions.map((option) => (
+            <TouchableOpacity
+              key={option.value}
+              onPress={() => setSelected(option.value)}
+              style={[
+                styles.filterOption,
+                selected === option.value && styles.selectedFilterOption,
+              ]}
+            >
+              <Text
+                style={[
+                  styles.filterOptionText,
+                  selected === option.value && styles.selectedFilterOptionText,
+                ]}
+              >
+                {option.label}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
       </View>
       <LinearGradient
         colors={[theme.mode == "light" ? "#b4b0d9" : "#222224", "#e1e1e3"]}
@@ -124,7 +172,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    // backgroundColor: "#dfe0f5",
   },
   lightContainer: {
     backgroundColor: "#dfe0f5",
@@ -132,7 +179,6 @@ const styles = StyleSheet.create({
   darkContainer: {
     backgroundColor: "#858176",
   },
-
   articleContainer: {
     padding: 10,
     marginTop: 20,
@@ -170,7 +216,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderRadius: 10,
     marginHorizontal: 5,
-    // color: "white",
   },
   items: {
     margin: 5,
@@ -178,8 +223,6 @@ const styles = StyleSheet.create({
     alignContent: "flex-start",
     paddingRight: 10,
     color: "black",
-    // flex: 1,
-    //width: 250,
   },
   items1: {
     margin: 5,
@@ -187,10 +230,7 @@ const styles = StyleSheet.create({
     alignContent: "flex-start",
     paddingRight: 60,
     color: "black",
-    // flex: 1,
     width: 300,
-
-    // width: 250,
   },
   darkItems1: {
     margin: 5,
@@ -199,8 +239,30 @@ const styles = StyleSheet.create({
     paddingRight: 60,
     color: "white",
     width: 300,
+  },
+  filterOption: {
+    paddingHorizontal: 10,
+    height: 40,
+    width: 90,
+    justifyContent: "center",
+    alignContent: "center",
+    textAlign: "center",
+    paddingVertical: 5,
+    borderRadius: 20,
+    marginHorizontal: 5,
 
-    //
+    backgroundColor: "lightblue",
+  },
+  selectedFilterOption: {
+    backgroundColor: "blue",
+  },
+  filterOptionText: {
+    alignContent: "center",
+    textAlign: "center",
+    color: "black",
+  },
+  selectedFilterOptionText: {
+    color: "white",
   },
 });
 
