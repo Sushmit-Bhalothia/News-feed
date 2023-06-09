@@ -11,11 +11,12 @@ import { useTranslation } from "react-i18next";
 import { FontAwesome } from "@expo/vector-icons";
 
 export default function TabTwoScreen() {
-  const { t } = useTranslation();
+  const { t } = useTranslation(); //for multiple language suppoort
   const { theme } = useTheme();
-  const iconColor = theme.mode == "light" ? "black" : "white";
+  const iconColor = theme.mode == "light" ? "black" : "white"; //icon color of the Fontawesome
 
   return (
+    //linear fradient  back ground color for the page
     <LinearGradient
       colors={[theme.mode == "light" ? "#b4b0d9" : "#222224", "#e1e1e3"]}
       style={[
@@ -23,14 +24,11 @@ export default function TabTwoScreen() {
         theme.mode === "light" ? styles.lightContainer : styles.darkContainer,
       ]}
     >
-      {/* <Image
-        source={require("../../assets/images/setting.jpeg")}
-        style={styles.image}
-      /> */}
       <View style={{ marginVertical: 20 }}>
         <FontAwesome name="gear" size={280} color={iconColor} />
       </View>
 
+      {/* All the available options  in the Settings */}
       <SettingOptions
         title={t("common:ChangeTheme")}
         icon="paint-brush"
@@ -59,8 +57,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    // justifyContent: "center",
-    // marginTop: "10%",
   },
   lightContainer: {
     backgroundColor: "#dfe0f5",
@@ -72,11 +68,5 @@ const styles = StyleSheet.create({
     width: 200,
     height: 200,
     marginBottom: 20,
-  },
-  separator: {
-    width: "80%",
-    height: 1,
-    backgroundColor: "black",
-    marginVertical: 10,
   },
 });

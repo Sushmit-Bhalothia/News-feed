@@ -71,11 +71,11 @@ function RootLayoutNav() {
   return (
     <>
       <ThemeProvider theme={theme}>
+        {/* wrarpping up the  layout with the language and theme provider */}
         <LanguageProvider>
           {/* <Drawer> */}
           <Stack>
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            {/* <Stack.Screen name="modal" options={{ presentation: "modal" }} /> */}
           </Stack>
           {/* </Drawer> */}
         </LanguageProvider>

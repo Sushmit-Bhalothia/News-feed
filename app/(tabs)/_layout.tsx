@@ -3,7 +3,7 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Link, Tabs } from "expo-router";
 import { Pressable } from "react-native";
 import { useTheme } from "@rneui/themed";
-
+import { useTranslation } from "react-i18next";
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
@@ -15,7 +15,7 @@ function TabBarIcon(props: {
 }
 
 export default function TabLayout() {
-  const { theme, updateTheme } = useTheme();
+  const { theme, updateTheme } = useTheme(); //for selecting dark and light mode in the app
 
   return (
     <Tabs
@@ -34,10 +34,12 @@ export default function TabLayout() {
         tabBarIcon: ({ color }) => (
           <TabBarIcon name={getTabIconName(route.name)} color={color} />
         ),
+        // title: "nameee",
       })}
     >
+      {/* Here we have only 2 screeens with  news and setting page */}
       <Tabs.Screen name="index" options={{ title: "News" }} />
-      <Tabs.Screen name="two" options={{ title: "Settings" }} />
+      <Tabs.Screen name="setting" options={{ title: "Settings" }} />
     </Tabs>
   );
 }
@@ -47,7 +49,7 @@ function getTabIconName(routeName: string) {
   switch (routeName) {
     case "index":
       return "feed";
-    case "two":
+    case "setting":
       return "gear";
     default:
       return "";

@@ -1,15 +1,17 @@
 export default {
-  // Hey: "नमस्ते",
-  // ContactUs:'हमसे संपर्क करें',
   SendFeed: "फ़ीडबैक भेजें",
   Report: "बग की रिपोर्ट करें",
   ChangeLang: "भाषा बदलें",
   ChangeTheme: "थीम रंग बदलें ",
   Discover: "खोज करो",
   Discreption: "दुनिया भर की खबरें",
-  // Dues:"बक़ाया",
-  // Area:"इलाका",
+
+  Business: "व्यवसाय",
+  Politics: "राजनीति",
+  Sports: "खेल",
+  Education: "शिक्षा",
   settings: "सेटिंग",
+  All: "सभी",
   News: "समाचार",
   Search: "खोजें",
   feedback: "प्रतिक्रिया",
@@ -17,10 +19,5 @@ export default {
   sendfeedback: "प्रतिक्रिया भेजें",
   ExplainIssue: "मसला समझाओ",
 
-  // MyProducts:"मेरे उत्पाद",
-  // MyCustomer:"मेरे ग्राहक",
-  // changepassword:"पासवर्ड बदलें",
-  // MySubscription:"मेरे ग्राहक",
-  // signout:"साइन आउट"
   languageSelector: "अपनी भाषा चुनें",
 };

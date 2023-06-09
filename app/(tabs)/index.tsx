@@ -1,7 +1,5 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import EditScreenInfo from "../../components/EditScreenInfo";
-import { Text, View } from "../../components/Themed";
 import SearchBar from "../../components/searchBar";
 import Articles from "../../components/Articles";
 import { useTheme } from "@rneui/themed";
@@ -17,12 +15,7 @@ export default function TabOneScreen() {
       {/* <SearchBar></SearchBar> */}
 
       <Articles></Articles>
-      {/* <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      /> */}
-      {/* <EditScreenInfo path="app/(tabs)/index.tsx" /> */}
+      {/* this includes the search bar and all the articles coming from the api */}
     </View>
   );
 }

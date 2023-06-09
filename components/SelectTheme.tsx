@@ -2,16 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useTheme } from "@rneui/themed";
 import { View, TouchableOpacity } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
-// import { useTranslation } from "react-i18next";
+
 import { Text } from "@rneui/themed";
-// import DropDownPicker, { ValueType } from "react-native-dropdown-picker";
-// import { translate } from "../constants/DCSLocalize";
+
 import { StyleSheet } from "react-native";
 
 const SelectTheme = () => {
   const { theme, updateTheme } = useTheme();
   const [value, setValue] = useState(theme.mode);
-  //   const { t } = useTranslation();
 
   useEffect(() => {
     updateTheme({ mode: value });
@@ -26,7 +24,6 @@ const SelectTheme = () => {
     <View
       style={theme.mode == "light" ? styles.container : styles.darkcontainer}
     >
-      {/* <Text style={styles.txt}> {t("common:themeSelector")} </Text> */}
       <TouchableOpacity
         onPress={handleToggleTheme}
         activeOpacity={0.7}

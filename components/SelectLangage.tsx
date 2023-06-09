@@ -53,7 +53,6 @@ const styles = StyleSheet.create({
     gap: 10,
     justifyContent: "flex-end",
     marginBottom: 40,
-    // backgroundColor: "black",
   },
   txt: {
     marginTop: 12,

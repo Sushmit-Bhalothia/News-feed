@@ -33,14 +33,14 @@ const Articles = () => {
   const [selected, setSelected] = useState("all"); // Selected filter option
   const { theme } = useTheme();
   const { t } = useTranslation();
+  const API = process.env.API;
   const url =
-    "https://newsapi.org/v2/everything?q=" +
-    selected +
-    "&apiKey=ca195cc3d1124f06a4f77af6aaf5cd97";
+    "https://newsapi.org/v2/everything?q=" + selected + "&apiKey=" + API; //
   useEffect(() => {
     fetchArticles();
   }, [selected]);
 
+  //fetching process  of url
   const fetchArticles = () => {
     const category = selected === "all" ? "" : selected;
     const fromDate = "2023-06-06";
@@ -71,8 +71,10 @@ const Articles = () => {
 
   const handleArticlePress = (item: Article) => {
     navigation.navigate("DetailedArticle", { article: item });
+    //opening up the new page for showing the detailed article here
   };
 
+  //compenent for each article that is going to appear on the home screen
   const renderItem = ({ item }: { item: Article }) => (
     <TouchableOpacity onPress={() => handleArticlePress(item)}>
       <View style={theme.mode == "light" ? styles.article : styles.darkArticle}>
@@ -102,11 +104,11 @@ const Articles = () => {
 
   // Array of filter options
   const filterOptions = [
-    { label: "All", value: "all" },
-    { label: "Business", value: "business" },
-    { label: "Politics", value: "politics" },
-    { label: "Sports", value: "sports" },
-    { label: "Education", value: "education" },
+    { label: t("common:All"), value: "all" },
+    { label: t("common:Business"), value: "business" },
+    { label: t("common:Politics"), value: "politics" },
+    { label: t("common:Sports"), value: "sports" },
+    { label: t("common:Education"), value: "education" },
   ];
 
   return (

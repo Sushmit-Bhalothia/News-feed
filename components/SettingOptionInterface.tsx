@@ -5,6 +5,8 @@ import { View, TouchableOpacity, Text } from "react-native";
 import { StyleSheet } from "react-native";
 import { useTheme } from "@rneui/themed";
 import { color } from "@rneui/themed/dist/config";
+
+//creating the component for each setting option
 interface SettingOptionProps {
   title: string;
   icon: string;
